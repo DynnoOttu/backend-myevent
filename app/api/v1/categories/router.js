@@ -1,13 +1,11 @@
 const express = require("express");
 const router = express();
-const { create } = require("./controller");
+const { create, index, findById, update } = require("./controller");
 
-router.get("/categories", (req, res) => {
-  res.status(200).json({
-    message: "Get all categories",
-  });
-});
-
+// Router Category
+router.get("/categories", index);
+router.get("/categories/:id", findById);
 router.post("/categories", create);
+router.put("/categories/:id", update);
 
 module.exports = router;
