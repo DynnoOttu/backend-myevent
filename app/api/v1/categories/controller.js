@@ -69,9 +69,22 @@ const update = async (req, res, next) => {
   }
 };
 
+const destroy = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const result = await Categories.findByIdAndDelete(id);
+    res.status(200).json({
+      message: "Delete Categories Success",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   create,
   index,
   findById,
   update,
+  destroy,
 };
