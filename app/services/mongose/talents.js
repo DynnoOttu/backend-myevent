@@ -1,6 +1,6 @@
 // import model Talents
 const Talents = require("../../api/v1/talents/model");
-const { checkingImage } = require("./images");
+const { checkingImage } = require("./image");
 
 // import custom error not found dan bad request
 const { NotFoundError, BadRequestError } = require("../../errors");
@@ -96,7 +96,7 @@ const deleteTalents = async (req) => {
   if (!result)
     throw new NotFoundError(`Tidak ada pembicara dengan id :  ${id}`);
 
-  await result.remove();
+  await result.deleteOne();
 
   return result;
 };

@@ -4,7 +4,7 @@ const {
   updateTalents,
   createTalents,
   deleteTalents,
-} = require("../../../services/mongoose/talents");
+} = require("../../../services/mongose/talents");
 
 const { StatusCodes } = require("http-status-codes");
 
