@@ -65,7 +65,7 @@ const EventSchema = new mongoose.Schema(
     },
     category: {
       type: mongoose.Types.ObjectId,
-      ref: "Category",
+      ref: "category",
       required: true,
     },
     talent: {
