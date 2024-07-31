@@ -1,20 +1,19 @@
-const {
-  genereteImage,
-  createImages,
-} = require("../../../services/mongose/image");
 const { StatusCodes } = require("http-status-codes");
+
+const { createCMSOrgizer } = require("../../../services/mongose/users");
 
 const create = async (req, res, next) => {
   try {
-    const result = await createImages(req);
+    const result = await createCMSOrgizer(req);
 
     res.status(StatusCodes.CREATED).json({
       data: result,
     });
-    return result;
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = { create };
+module.exports = {
+  create,
+};
