@@ -21,8 +21,6 @@ const createCMSOrgizer = async (req) => {
     organizer: result._id,
   });
 
-  console.log("users", users);
-
   delete users._doc.password;
 
   return users;
