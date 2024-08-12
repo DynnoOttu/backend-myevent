@@ -26,4 +26,24 @@ const createCMSOrgizer = async (req) => {
   return users;
 };
 
-module.exports = { createCMSOrgizer };
+const createUsers = async (req) => {
+  const { name, email, password, confirmPassword, role, organizer } = req.body;
+
+  if (password !== confirmPassword) {
+    throw new BadRequestError(
+      "Password and confirmation password do not match."
+    );
+  }
+
+  const result = await Users.create({
+    name,
+    email,
+    organizer: req.user.organizer,
+    password,
+    role,
+  });
+
+  return result;
+};
+
+module.exports = { createCMSOrgizer, createUsers };
