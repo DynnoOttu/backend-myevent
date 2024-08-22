@@ -46,4 +46,10 @@ const createUsers = async (req) => {
   return result;
 };
 
-module.exports = { createCMSOrgizer, createUsers };
+const getAllUsers = async () => {
+  const result = await Users.find();
+
+  return result;
+};
+
+module.exports = { createCMSOrgizer, createUsers, getAllUsers };
