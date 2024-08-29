@@ -10,7 +10,7 @@ const {
 } = require("../../errors");
 const { createTokenParticipant, createJWT } = require("../../utils");
 
-const { otpMail } = require("../mail");
+const { otpMail } = require("../email");
 
 const signupParticipant = async (req) => {
   const { firstName, lastName, email, password, role } = req.body;
@@ -27,7 +27,7 @@ const signupParticipant = async (req) => {
     result.role = role;
     result.email = email;
     result.password = password;
-    result.otp = Math.floor(Math.random() * 9999);
+    result.otp = Math.floor(10000 + Math.random() * 90000);
     await result.save();
   } else {
     result = await Participant.create({
@@ -36,7 +36,7 @@ const signupParticipant = async (req) => {
       email,
       password,
       role,
-      otp: Math.floor(Math.random() * 9999),
+      otp: Math.floor(10000 + Math.random() * 90000),
     });
   }
   await otpMail(email, result);

@@ -8,7 +8,7 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // true for 465, false for other ports
   auth: {
-    user: gmail,
+    user: email,
     pass: password,
   },
 });
@@ -18,7 +18,7 @@ const otpMail = async (email, data) => {
     let template = fs.readFileSync("app/views/email/otp.html", "utf8");
 
     let message = {
-      from: gmail,
+      from: email,
       to: email,
       subject: "Otp for registration is: ",
       html: Mustache.render(template, data),
