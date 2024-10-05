@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
 
 const app = express();
 
@@ -19,8 +20,8 @@ const v1 = "/api/v1";
 
 const notFoundMiddleware = require("./app/middlewares/not-found");
 const handleErrorMiddleware = require("./app/middlewares/hendler-error");
-// const handleErrorMiddleware = require("./app/middlewares/handler-error");
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,8 +41,8 @@ app.use(`${v1}/cms`, eventRouter);
 app.use(`${v1}/cms`, organizersRouter);
 app.use(`${v1}/cms`, authCMSRouter);
 app.use(`${v1}/cms`, ordersRouter);
+app.use(`${v1}/cms`, paymentsRouter);
 app.use(`${v1}`, participantsRouter);
-app.use(`${v1}`, paymentsRouter);
 
 app.use(notFoundMiddleware);
 app.use(handleErrorMiddleware);
