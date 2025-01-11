@@ -60,6 +60,7 @@ const destroy = async (req, res, next) => {
     const result = await deleteCategories(req);
     res.status(StatusCodes.OK).json({
       message: "Delete Categories Success",
+      name: result.name,
     });
   } catch (error) {
     next(error);
